@@ -1,0 +1,2 @@
+if a0 == 1 then b0 *= 1
+else b0 = 2

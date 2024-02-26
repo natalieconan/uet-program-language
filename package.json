@@ -1,0 +1,13 @@
+{
+  "name": "novapl",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node commands.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
