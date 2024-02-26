@@ -1,6 +1,8 @@
 import fs from 'fs';
 import { lst, lstRegex } from './env.js';
 
+const filein = "input.txt";
+
 /* get all tokens */
 const getSubToken = (chr, tokens) => {
 
@@ -34,7 +36,7 @@ const getToken = (text) => {
 }
 
 var tokens = [];
-fs.readFile("input.txt", "utf8", (err, text) => {
+fs.readFile(filein, "utf8", (err, text) => {
     const data = text.split("\n");
     for(var textLine of data) {
         console.log(getToken(textLine));
