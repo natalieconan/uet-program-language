@@ -1,10 +1,7 @@
-import fs from 'fs';
 import { lstVars, lstCommands, lstOperators, lstSpecialSigns } from './env.js';
 
-const filein = "input.txt";
-
 /* get all tokens */
-const getSubToken = (chr, tokens) => {
+function getTokenFromChar(chr, tokens) {
 
     // check commands
     for (const key in lstCommands) {
@@ -46,22 +43,15 @@ const getSubToken = (chr, tokens) => {
             return;
         }
     }
+
+    tokens.push(["UNKNOWN", ]);
 }
 
-const getToken = (text) => {
+export function getToken(text) {
     var tokens = [];
     const substr = text.split(" ");
     for(var chr of substr) {
-        getSubToken(chr, tokens);
+        getTokenFromChar(chr, tokens);
     }
     return tokens;
 }
-
-var tokens = [];
-fs.readFile(filein, "utf8", (err, text) => {
-    const data = text.split("\n");
-    for(var textLine of data) {
-        console.log(getToken(textLine));
-        tokens.concat(getToken(textLine));
-    }
-});

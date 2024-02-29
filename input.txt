@@ -1,2 +1,2 @@
 if -A2A == 1 then b0 *= 1
-else b0+ = 2
+else b0 = 2
