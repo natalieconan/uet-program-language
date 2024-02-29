@@ -1,5 +1,5 @@
 export const lstVars = {
-    "ID": /-?^[a-z][0-9]([a-z]|[0-9])?/, // id
+    "ID": /-?^[a-z][0-9]([a-z]|[0-9])*$/, // id
     "NUM": /^-?\d+(\.\d+)?$/ // number
 }
 
