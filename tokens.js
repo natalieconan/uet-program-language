@@ -44,7 +44,7 @@ function getTokenFromChar(chr, tokens) {
         }
     }
 
-    tokens.push(["UNKNOWN", ]);
+    tokens.push(["UNKNOWN", chr]);
 }
 
 export function getToken(text) {
