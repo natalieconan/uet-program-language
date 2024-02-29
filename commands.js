@@ -29,7 +29,11 @@ const getSubToken = (chr, tokens) => {
         const value = lstVars[key];
         const re = new RegExp(value);
         if (re.exec(chr)) {
-            tokens.push([key, chr]);
+            const positiveChr = chr.replace("-", "");
+            if (chr !== positiveChr) {
+                tokens.push(["MINUS", ]);
+            }
+            tokens.push([key, positiveChr]);
             return;
         }
     }
