@@ -1,14 +1,32 @@
 import fs from 'fs';
-import { lst, lstRegex } from './env.js';
+import { lstVars, lstCommands, lstOperators, lstSpecialSigns } from './env.js';
 
 const filein = "input.txt";
 
 /* get all tokens */
 const getSubToken = (chr, tokens) => {
 
+    // check commands
+    for (const key in lstCommands) {
+        const values = lstCommands[key];
+        if (values.includes(chr)) {
+            tokens.push([key, ]);
+            return;
+        }
+    }
+
+    // check special signs
+    for (const key in lstSpecialSigns) {
+        const values = lstSpecialSigns[key];
+        if (values.includes(chr)) {
+            tokens.push([key, ]);
+            return;
+        }
+    }
+
     // check variables & numbers
-    for (const key in lstRegex) {
-        const value = lstRegex[key];
+    for (const key in lstVars) {
+        const value = lstVars[key];
         const re = new RegExp(value);
         if (re.exec(chr)) {
             tokens.push([key, chr]);
@@ -16,9 +34,9 @@ const getSubToken = (chr, tokens) => {
         }
     }
 
-    // check others
-    for (const key in lst) {
-        const values = lst[key];
+    // check operations
+    for (const key in lstOperators) {
+        const values = lstOperators[key];
         if (values.includes(chr)) {
             tokens.push([key, chr]);
             return;
