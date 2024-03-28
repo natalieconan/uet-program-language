@@ -36,3 +36,10 @@ end
 Error: a is already declared, line: 7
 ```
 
+
+Cách chạy: 
+
+* Cài đặt `apache ant`
+* Chạy `ant init` để khởi tạo.
+*	Thay đổi test trong file input.upl
+*	Dùng lệnh `ant run` để chạy chương trình.
