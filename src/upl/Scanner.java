@@ -3,7 +3,8 @@
 // source: jflex/Scanner.jflex
 
 package upl;
-
+import java.util.*;
+import java.lang.StringBuilder;
 
 
 @SuppressWarnings("fallthrough")
@@ -17,6 +18,7 @@ class Scanner {
 
   // Lexical states.
   public static final int YYINITIAL = 0;
+  public static final int IN_COMMENT = 2;
 
   /**
    * ZZ_LEXSTATE[l] is the state in the DFA for the lexical state l
@@ -25,7 +27,7 @@ class Scanner {
    * l is of the form l = 2*k, k a non negative integer
    */
   private static final int ZZ_LEXSTATE[] = {
-     0, 0
+     0,  0,  1, 1
   };
 
   /**
@@ -62,12 +64,13 @@ class Scanner {
   private static final int [] ZZ_CMAP_BLOCKS = zzUnpackcmap_blocks();
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
-    "\11\0\2\1\1\2\2\1\22\0\1\1\7\0\1\3"+
-    "\1\4\1\5\1\6\1\0\1\7\2\0\1\10\11\11"+
-    "\1\0\1\12\1\13\1\14\1\13\2\0\32\15\6\0"+
-    "\4\15\1\16\1\17\1\15\1\20\1\21\2\15\1\22"+
-    "\1\15\1\23\4\15\1\24\1\25\6\15\1\0\1\26"+
-    "\10\0\1\2\u01a2\0\2\2\326\0\u0100\2";
+    "\11\0\1\1\1\2\1\3\2\2\22\0\1\1\7\0"+
+    "\1\4\1\5\1\6\1\7\1\0\1\10\1\0\1\11"+
+    "\12\12\1\0\1\13\1\0\1\14\1\15\2\0\32\16"+
+    "\6\0\1\16\1\17\1\16\1\20\1\21\1\22\1\23"+
+    "\1\24\1\25\2\16\1\26\1\16\1\27\1\30\1\31"+
+    "\1\16\1\32\1\33\1\34\2\16\1\35\3\16\1\36"+
+    "\1\0\1\37\7\0\1\3\u01a2\0\2\3\326\0\u0100\3";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[1024];
@@ -94,12 +97,15 @@ class Scanner {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\1\2\1\3\1\4\1\5\1\6\1\1"+
-    "\1\7\1\10\1\11\1\12\4\1\1\0\1\11\1\13"+
-    "\1\0\1\14\3\0\1\15\1\16";
+    "\2\0\1\1\1\2\1\3\1\4\1\5\1\6\2\1"+
+    "\1\7\1\10\1\11\1\12\10\13\1\14\1\15\5\16"+
+    "\1\17\1\0\1\12\3\13\1\20\2\13\1\21\4\13"+
+    "\1\22\3\16\2\23\3\13\1\24\4\13\1\16\1\24"+
+    "\1\13\1\25\1\0\3\13\1\26\1\13\1\16\1\27"+
+    "\1\0\1\30\1\31\1\32\1\27\2\30";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[26];
+    int [] result = new int[76];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -124,13 +130,19 @@ class Scanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\27\0\27\0\27\0\27\0\27\0\27\0\56"+
-    "\0\105\0\27\0\134\0\134\0\163\0\212\0\241\0\270"+
-    "\0\163\0\27\0\317\0\346\0\163\0\375\0\u0114\0\u012b"+
-    "\0\163\0\163";
+    "\0\0\0\40\0\100\0\140\0\100\0\100\0\100\0\100"+
+    "\0\200\0\240\0\300\0\100\0\340\0\340\0\u0100\0\u0120"+
+    "\0\u0140\0\u0160\0\u0180\0\u01a0\0\u01c0\0\u01e0\0\100\0\100"+
+    "\0\u0200\0\u0220\0\u0240\0\u0260\0\u0280\0\100\0\u02a0\0\100"+
+    "\0\u02c0\0\u02e0\0\u0300\0\u0100\0\u0320\0\u0340\0\u0100\0\u0360"+
+    "\0\u0380\0\u03a0\0\u03c0\0\100\0\u03e0\0\u0400\0\u0420\0\u02a0"+
+    "\0\u0440\0\u0460\0\u0480\0\u04a0\0\u0100\0\u04c0\0\u04e0\0\u0500"+
+    "\0\u0520\0\u0540\0\u0200\0\u0560\0\u0100\0\u0580\0\u05a0\0\u05c0"+
+    "\0\u05e0\0\u0100\0\u0600\0\u0620\0\u0100\0\u0640\0\u0660\0\u0100"+
+    "\0\u0100\0\u0200\0\u0680\0\100";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[26];
+    int [] result = new int[76];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -153,19 +165,47 @@ class Scanner {
   private static final int [] ZZ_TRANS = zzUnpacktrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\3\1\0\1\4\1\5\1\6\1\7\1\10"+
-    "\2\11\1\12\1\13\1\14\1\15\1\16\2\15\1\17"+
-    "\3\15\1\20\1\2\40\0\1\11\3\0\11\21\11\0"+
-    "\2\11\31\0\1\22\22\0\2\23\3\0\11\21\11\0"+
-    "\2\23\3\0\5\21\1\24\3\21\11\0\2\23\3\0"+
-    "\2\21\1\25\6\21\11\0\2\23\3\0\3\21\1\26"+
-    "\5\21\11\0\2\23\3\0\12\23\10\0\2\23\3\0"+
-    "\7\21\1\27\1\21\11\0\2\23\3\0\1\21\1\30"+
-    "\7\21\11\0\2\23\3\0\1\21\1\31\7\21\11\0"+
-    "\2\23\3\0\6\21\1\32\2\21\1\0";
+    "\1\3\2\4\1\0\1\5\1\6\1\7\1\10\1\11"+
+    "\1\12\1\13\1\14\1\15\1\16\1\17\1\20\1\21"+
+    "\1\22\3\17\1\23\3\17\1\24\2\17\1\25\1\26"+
+    "\1\27\1\30\6\31\1\32\2\31\1\33\5\31\1\34"+
+    "\1\31\1\35\16\31\41\0\2\4\47\0\1\13\3\0"+
+    "\20\17\10\0\1\36\2\0\1\37\40\0\1\13\41\0"+
+    "\1\40\35\0\1\41\3\0\20\17\14\0\1\41\3\0"+
+    "\3\17\1\42\6\17\1\43\5\17\14\0\1\41\3\0"+
+    "\12\17\1\44\5\17\14\0\1\41\3\0\10\17\1\45"+
+    "\1\46\6\17\14\0\1\41\3\0\4\17\1\47\4\17"+
+    "\1\50\6\17\14\0\1\41\3\0\14\17\1\51\3\17"+
+    "\14\0\1\41\3\0\6\17\1\52\11\17\14\0\1\41"+
+    "\3\0\6\17\1\53\11\17\2\0\6\31\1\0\31\31"+
+    "\11\0\1\54\26\0\6\31\1\36\2\31\1\55\34\31"+
+    "\1\0\12\31\1\56\24\31\1\0\20\31\1\57\10\31"+
+    "\1\37\1\60\1\61\1\0\34\37\12\0\1\41\37\0"+
+    "\1\41\3\0\5\17\1\62\12\17\14\0\1\41\3\0"+
+    "\12\17\1\63\5\17\14\0\1\41\3\0\15\17\1\64"+
+    "\2\17\14\0\1\41\3\0\2\17\1\65\15\17\14\0"+
+    "\1\41\3\0\16\17\1\66\1\17\14\0\1\41\3\0"+
+    "\7\17\1\67\10\17\14\0\1\41\3\0\3\17\1\70"+
+    "\14\17\14\0\1\41\3\0\7\17\1\71\10\17\2\0"+
+    "\2\55\2\31\2\55\1\37\31\55\6\31\1\0\14\31"+
+    "\1\72\22\31\1\0\11\31\1\73\17\31\1\0\2\61"+
+    "\47\0\1\41\3\0\7\17\1\74\10\17\14\0\1\41"+
+    "\3\0\10\17\1\66\7\17\14\0\1\41\3\0\3\17"+
+    "\1\75\14\17\3\0\2\76\7\0\1\41\3\0\1\17"+
+    "\1\77\5\17\1\100\10\17\14\0\1\41\3\0\11\17"+
+    "\1\101\6\17\14\0\1\41\3\0\11\17\1\102\6\17"+
+    "\14\0\1\41\3\0\10\17\1\103\7\17\2\0\6\31"+
+    "\1\0\16\31\1\104\12\31\12\0\1\41\3\0\11\17"+
+    "\1\105\6\17\3\0\2\76\5\0\1\106\5\0\20\107"+
+    "\14\0\1\41\3\0\12\17\1\43\5\17\14\0\1\41"+
+    "\3\0\11\17\1\50\6\17\14\0\1\41\3\0\16\17"+
+    "\1\110\1\17\14\0\1\41\3\0\3\17\1\111\14\17"+
+    "\2\0\6\31\1\0\20\31\1\112\10\31\16\0\20\107"+
+    "\14\0\1\113\1\0\1\114\1\0\20\107\14\0\1\113"+
+    "\1\0\1\114\23\0";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[322];
+    int [] result = new int[1696];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -208,11 +248,12 @@ class Scanner {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\6\11\2\1\1\11\6\1\1\0\1\11\1\1"+
-    "\1\0\1\1\3\0\2\1";
+    "\2\0\1\11\1\1\4\11\3\1\1\11\12\1\2\11"+
+    "\5\1\1\11\1\0\1\11\13\1\1\11\21\1\1\0"+
+    "\7\1\1\0\5\1\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[26];
+    int [] result = new int[76];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -289,8 +330,12 @@ class Scanner {
   private boolean zzEOFDone;
 
   /* user code: */
-
-	
+    StringBuilder yytextBuffer = new StringBuilder();
+    boolean hasBegin = false;
+    boolean hasEnd = false;
+    HashMap<String, Boolean> declaredVariables = new HashMap<>();
+    int bracket = 0;
+    int scope = 0;
 
 
   /**
@@ -701,81 +746,182 @@ class Scanner {
 
       if (zzInput == YYEOF && zzStartRead == zzCurrentPos) {
         zzAtEOF = true;
-          {     System.out.println("EOF"); return 1;
+          {     /* handle errors when end without "end" */
+    if (hasBegin == false) {
+        System.out.println("Syntax Error: 'begin' is missing at the begin of the program");
+    }
+
+    if (hasEnd == false) {
+        System.out.println("Syntax Error: 'end' is missing at the end of the program");
+    }
+    System.out.println("EOF"); return 1;
  }
       }
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
-            { System.out.println("Illegal character: "+yytext()); return 0;
+            { System.out.println("Illegal character: " + yytext() + ", line: " + yyline);
             }
           // fall through
-          case 15: break;
+          case 27: break;
           case 2:
             { /* ignore white space. */
             }
           // fall through
-          case 16: break;
-          case 3:
-            { System.out.println("Left Bracket"); return 0;
-            }
-          // fall through
-          case 17: break;
-          case 4:
-            { System.out.println("Right Bracket"); return 0;
-            }
-          // fall through
-          case 18: break;
-          case 5:
-            { System.out.println("Times"); return 0;
-            }
-          // fall through
-          case 19: break;
-          case 6:
-            { System.out.println("Plus"); return 0;
-            }
-          // fall through
-          case 20: break;
-          case 7:
-            { System.out.println("Number " + yytext()); return 0;
-            }
-          // fall through
-          case 21: break;
-          case 8:
-            { System.out.println("Semicolon"); return 0;
-            }
-          // fall through
-          case 22: break;
-          case 9:
-            { System.out.println("Rop " + yytext()); return 0;
-            }
-          // fall through
-          case 23: break;
-          case 10:
-            { System.out.println("Assign"); return 0;
-            }
-          // fall through
-          case 24: break;
-          case 11:
-            { System.out.println("Id " + yytext()); return 0;
-            }
-          // fall through
-          case 25: break;
-          case 12:
-            { System.out.println("If"); return 0;
-            }
-          // fall through
-          case 26: break;
-          case 13:
-            { System.out.println("Else"); return 0;
-            }
-          // fall through
-          case 27: break;
-          case 14:
-            { System.out.println("Then"); return 0;
-            }
-          // fall through
           case 28: break;
+          case 3:
+            { System.out.println("LBRACKET"); 
+    bracket++;
+            }
+          // fall through
+          case 29: break;
+          case 4:
+            { bracket--;
+    if (bracket < 0) {
+        System.out.println("Syntax Error: '{' is missing, line : " + yyline);
+    } else {
+        System.out.println("RBRACKET"); 
+    }
+    bracket++;
+            }
+          // fall through
+          case 30: break;
+          case 5:
+            { System.out.println("TIMES");
+            }
+          // fall through
+          case 31: break;
+          case 6:
+            { System.out.println("PLUS");
+            }
+          // fall through
+          case 32: break;
+          case 7:
+            { System.out.println("NUMBER " + yytext());
+            }
+          // fall through
+          case 33: break;
+          case 8:
+            { System.out.println("SEMI");
+            }
+          // fall through
+          case 34: break;
+          case 9:
+            { System.out.println("ASSIGN");
+            }
+          // fall through
+          case 35: break;
+          case 10:
+            { System.out.println("ROP " + yytext());
+            }
+          // fall through
+          case 36: break;
+          case 11:
+            { String variable = yytext();
+    if (declaredVariables.get(variable) == null) {
+        System.out.println("Error: %s is not declared, line: %s".formatted(variable, yyline));
+    } else {
+        System.out.println("ID " + variable); 
+    }
+            }
+          // fall through
+          case 37: break;
+          case 12:
+            { System.out.println("LSCOPE"); 
+    scope++;
+            }
+          // fall through
+          case 38: break;
+          case 13:
+            { scope--;
+    if (scope < 0) {
+        System.out.println("Syntax Error: '{' is missing, line: " + yyline);
+    } else {
+        System.out.println("RSCOPE");
+    }
+    scope++;
+            }
+          // fall through
+          case 39: break;
+          case 14:
+            { yytextBuffer.append(yytext());
+            }
+          // fall through
+          case 40: break;
+          case 15:
+            { yybegin(IN_COMMENT);
+    System.out.print("COMMENT ");
+    // Reset StringBuilder for a new comment
+    yytextBuffer.setLength(0);
+            }
+          // fall through
+          case 41: break;
+          case 16:
+            { System.out.println("DO");
+            }
+          // fall through
+          case 42: break;
+          case 17:
+            { System.out.println("IF");
+            }
+          // fall through
+          case 43: break;
+          case 18:
+            { yybegin(YYINITIAL); 
+    System.out.println(yytextBuffer.toString());
+            }
+          // fall through
+          case 44: break;
+          case 19:
+            { System.out.println("COMMENT: "+yytext());
+            }
+          // fall through
+          case 45: break;
+          case 20:
+            { yybegin(YYINITIAL); 
+    hasEnd = true;
+    System.out.println("End The Program");
+            }
+          // fall through
+          case 46: break;
+          case 21:
+            { System.out.println("ELSE");
+            }
+          // fall through
+          case 47: break;
+          case 22:
+            { System.out.println("THEN");
+            }
+          // fall through
+          case 48: break;
+          case 23:
+            { hasBegin = true;
+    System.out.println("Begin The Program");
+            }
+          // fall through
+          case 49: break;
+          case 24:
+            { String[] text = yytext().replace("=", "").split(" ");
+    String type = text[0];
+    String variable = text[1];
+
+    declaredVariables.put(variable, true);
+
+    System.out.println("DECLARE " + type);
+    System.out.println("ID " + variable);
+            }
+          // fall through
+          case 50: break;
+          case 25:
+            { System.out.println("PRINT ");
+            }
+          // fall through
+          case 51: break;
+          case 26:
+            { System.out.println("WHILE");
+            }
+          // fall through
+          case 52: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

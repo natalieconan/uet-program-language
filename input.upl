@@ -1,3 +1,25 @@
-;
-if (*a0 -b0) then a0=0;
-$
+begin
+	/*	comments
+	cho nhiều dòng
+	*/
+	
+  int y;
+	bool a;//comment cho một dòng
+	if a>b then {
+		int x=1;
+	}else{
+		y=x;
+		x=x+1;
+	}
+	print(a);
+	if x>=a then{
+	x=x+1;
+}
+	bool x=a==b;
+	do{
+		int b=1;
+		b=b*10;
+		a=(b+10)*b;
+	}while(a>1);
+	print(a+1)
+end
