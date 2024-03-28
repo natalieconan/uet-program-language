@@ -41,8 +41,8 @@ ID    =  {SIGN}?{LETTER}+{DIGIT}*
 
 WS          = [ \t\n\r\f]
 
-TYPE     = "int"|"bool"
-DECLARATION = {TYPE}+{WS}+{ID}"="?
+TYPE     = "int" | "bool"
+DECLARATION = {TYPE} \s+ {ID} \s* "="?
 
 PRINT = "print"
 
@@ -122,9 +122,13 @@ EOL = "\n"
 
 /* declaration */
 {DECLARATION} { 
-    String[] text = yytext().replace("=", "").split(" ");
+    String[] text = yytext().replace("=", "").split("\\s+");
     String type = text[0];
     String variable = text[1];
+
+    if (declaredVariables.get(variable) != null) {
+      System.out.println("Error: %s is already declared, line: %s".formatted(variable, yyline));
+    }
 
     declaredVariables.put(variable, true);
 
