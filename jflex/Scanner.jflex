@@ -122,6 +122,7 @@ EOL = "\n"
 
 /* declaration */
 {DECLARATION} { 
+    int haveAssign = yytext().indexOf("=");
     String[] text = yytext().replace("=", "").split("\\s+");
     String type = text[0];
     String variable = text[1];
@@ -134,6 +135,9 @@ EOL = "\n"
 
     System.out.println("DECLARE " + type);
     System.out.println("ID " + variable);
+    if (haveAssign != -1) {
+      System.out.println("ASSIGN");
+    }
 }
 
 {NUMBER} { System.out.println("NUMBER " + yytext()); }

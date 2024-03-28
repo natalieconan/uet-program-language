@@ -904,7 +904,8 @@ class Scanner {
           // fall through
           case 49: break;
           case 24:
-            { String[] text = yytext().replace("=", "").split("\\s+");
+            { int haveAssign = yytext().indexOf("=");
+    String[] text = yytext().replace("=", "").split("\\s+");
     String type = text[0];
     String variable = text[1];
 
@@ -916,6 +917,9 @@ class Scanner {
 
     System.out.println("DECLARE " + type);
     System.out.println("ID " + variable);
+    if (haveAssign != -1) {
+      System.out.println("ASSIGN");
+    }
             }
           // fall through
           case 50: break;

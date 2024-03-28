@@ -4,6 +4,7 @@ begin
 	*/
 	
   int y;
-	bool    a;
+  int;
+	bool a=x==y;
   int a;
 end
