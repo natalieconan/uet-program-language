@@ -1,0 +1,114 @@
+[java] Begin The Program
+[java] DECLARE int
+[java] ID x
+[java] SEMI
+[java] DECLARE int
+[java] ID y
+[java] ASSIGN
+[java] ID x
+[java] PLUS
+[java] NUMBER 1
+[java] SEMI
+[java] COMMENT 	comments
+[java] 	cho nhiều dòng
+[java] 	
+[java] DECLARE bool
+[java] ID a
+[java] SEMI
+[java] COMMENT: //comment cho một dòng
+[java] 	
+[java] IF
+[java] ID x
+[java] ROP >
+[java] ID a
+[java] THEN
+[java] LSCOPE
+[java] DECLARE int
+[java] ID c
+[java] ASSIGN
+[java] NUMBER 1
+[java] SEMI
+[java] SCOPE: 1
+[java] RSCOPE
+[java] ELSE
+[java] LSCOPE
+[java] ID y
+[java] ASSIGN
+[java] ID x
+[java] SEMI
+[java] ID x
+[java] ASSIGN
+[java] ID x
+[java] PLUS
+[java] NUMBER 1
+[java] SEMI
+[java] SCOPE: 1
+[java] RSCOPE
+[java] PRINT 
+[java] LBRACKET
+[java] ID a
+[java] RBRACKET
+[java] SEMI
+[java] IF
+[java] ID x
+[java] ROP >=
+[java] ID a
+[java] THEN
+[java] LSCOPE
+[java] ID x
+[java] ASSIGN
+[java] ID x
+[java] PLUS
+[java] NUMBER 1
+[java] SEMI
+[java] SCOPE: 1
+[java] RSCOPE
+[java] Error: x is already declared, line: 18
+[java] DECLARE bool
+[java] ID x
+[java] ASSIGN
+[java] ID a
+[java] ROP ==
+[java] Error: b is not declared, line: 18
+[java] SEMI
+[java] DO
+[java] LSCOPE
+[java] DECLARE int
+[java] ID b
+[java] ASSIGN
+[java] NUMBER 1
+[java] SEMI
+[java] ID b
+[java] ASSIGN
+[java] ID b
+[java] TIMES
+[java] NUMBER 10
+[java] SEMI
+[java] ID a
+[java] ASSIGN
+[java] LBRACKET
+[java] ID b
+[java] PLUS
+[java] NUMBER 10
+[java] RBRACKET
+[java] TIMES
+[java] ID b
+[java] SEMI
+[java] SCOPE: 1
+[java] RSCOPE
+[java] WHILE
+[java] LBRACKET
+[java] ID a
+[java] ROP >
+[java] NUMBER 1
+[java] RBRACKET
+[java] SEMI
+[java] PRINT 
+[java] LBRACKET
+[java] ID a
+[java] PLUS
+[java] NUMBER 1
+[java] RBRACKET
+[java] SEMI
+[java] End The Program
+[java] EOF
