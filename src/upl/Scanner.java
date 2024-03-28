@@ -336,7 +336,7 @@ class Scanner {
     StringBuilder yytextBuffer = new StringBuilder();
     boolean hasBegin = false;
     boolean hasEnd = false;
-    HashMap<String, Boolean> declaredVariables = new HashMap<>();
+    HashMap<String, Integer> declaredVariables = new HashMap<>();
     int bracket = 0;
     int scope = 0;
 
@@ -757,6 +757,15 @@ class Scanner {
     if (hasEnd == false) {
         System.out.println("Syntax Error: 'end' is missing at the end of the program");
     }
+
+    if (bracket != 0) {
+      System.out.println("Syntax Error: ')' is missing");
+    }
+
+    if (scope != 0) {
+      System.out.println("Syntax Error: '}' is missing");
+    }
+
     System.out.println("EOF"); return 1;
  }
       }
@@ -781,11 +790,10 @@ class Scanner {
           case 4:
             { bracket--;
     if (bracket < 0) {
-        System.out.println("Syntax Error: '{' is missing, line : " + yyline);
+        System.out.println("Syntax Error: '(' is missing, line : " + yyline);
     } else {
         System.out.println("RBRACKET"); 
     }
-    bracket++;
             }
           // fall through
           case 30: break;
@@ -836,13 +844,22 @@ class Scanner {
           // fall through
           case 38: break;
           case 13:
-            { scope--;
-    if (scope < 0) {
+            { System.out.println("SCOPE: " + scope);
+    if (scope == 0) {
         System.out.println("Syntax Error: '{' is missing, line: " + yyline);
     } else {
+        Iterator<Map.Entry<String, Integer>> iterator = declaredVariables.entrySet().iterator();
+    
+        while (iterator.hasNext()) {
+            Map.Entry<String, Integer> entry = iterator.next();
+            if (entry.getValue().equals(scope)) {
+                iterator.remove();
+            }
+        }
+
+        scope--;
         System.out.println("RSCOPE");
     }
-    scope++;
             }
           // fall through
           case 39: break;
@@ -913,7 +930,7 @@ class Scanner {
       System.out.println("Error: %s is already declared, line: %s".formatted(variable, yyline));
     }
 
-    declaredVariables.put(variable, true);
+    declaredVariables.put(variable, scope);
 
     System.out.println("DECLARE " + type);
     System.out.println("ID " + variable);

@@ -4,7 +4,10 @@ begin
 	*/
 	
   int y;
-  int;
-	bool a=x==y;
+	bool a;
+  if (a > 0) {
+    if (y) {
+      int x;
+    }
   int a;
 end
