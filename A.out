@@ -1,0 +1,111 @@
+KEYWORD: begin
+KEYWORD: int
+ID: x
+Semicolon
+KEYWORD: int
+ID: y
+Assign
+ID: x
+Plus
+NUMBER: 1
+Semicolon
+Start multiline comment
+Multiline comment content: 	comments
+	cho nhiều dòng
+	
+End multiline comment
+KEYWORD: bool
+ID: a
+Semicolon
+Start singleline comment
+Singleline comment content: comment cho một dòng
+KEYWORD: if
+ID: x
+ROP: >
+ID: a
+KEYWORD: then
+Left curly bracket
+KEYWORD: int
+ID: c
+Assign
+NUMBER: 1
+Semicolon
+Right curly bracket
+KEYWORD: else
+Left curly bracket
+ID: y
+Assign
+ID: x
+Semicolon
+ID: x
+Assign
+ID: x
+Plus
+NUMBER: 1
+Semicolon
+Right curly bracket
+KEYWORD: print
+Left round bracket
+ID: a
+Right round bracket
+Semicolon
+KEYWORD: if
+ID: x
+ROP: >=
+ID: a
+KEYWORD: then
+Left curly bracket
+ID: x
+Assign
+ID: x
+Plus
+NUMBER: 1
+Semicolon
+Right curly bracket
+KEYWORD: bool
+Error: x is already declared
+ID: x
+Assign
+ID: a
+ROP: ==
+Error: b was not declared
+Semicolon
+KEYWORD: do
+Left curly bracket
+KEYWORD: int
+ID: b
+Assign
+NUMBER: 1
+Semicolon
+ID: b
+Assign
+ID: b
+Multiply
+NUMBER: 10
+Semicolon
+ID: a
+Assign
+Left round bracket
+ID: b
+Plus
+NUMBER: 10
+Right round bracket
+Multiply
+ID: b
+Semicolon
+Right curly bracket
+KEYWORD: while
+Left round bracket
+ID: a
+ROP: >
+NUMBER: 1
+Right round bracket
+Semicolon
+KEYWORD: print
+Left round bracket
+ID: a
+Plus
+NUMBER: 1
+Right round bracket
+Semicolon
+KEYWORD: end
